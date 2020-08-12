@@ -2,8 +2,17 @@
     display: grid;
     column-gap: 10px;
     row-gap: 10px;
+    justify-content: center;
 }
 
 .cell {
-    background: gray
+    background: gray;
+    padding: 5px
+}
+
+.cell .bubble{
+    /* display:none; */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
