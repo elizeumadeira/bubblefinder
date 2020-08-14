@@ -1,8 +1,9 @@
 .container {
-    display: grid;
+    display: inline-grid;
     column-gap: 10px;
     row-gap: 10px;
     justify-content: center;
+    transition: transform 0.4s;
 }
 
 .cell {
@@ -11,11 +12,20 @@
 }
 
 .cell.cell_clicked{
-    background: green;
+    /* background: green; */
+    background: transparent;
+}
+
+.cell.cell_clicked .bubble{
+    display:block;
+}
+
+.cell.cell_disabled{
+    visibility: hidden;
 }
 
 .cell .bubble{
-    /* display:none; */
+    display:none;
     width: 30px;
     height: 30px;
     border-radius: 50%;

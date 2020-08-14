@@ -3,6 +3,7 @@ const levels = {
         unlock: true,
         score: 0,
         color_number: 8,
+        tries: 1,
         board: [
             // [1,1,1,1],
             // [1,0,0,1],

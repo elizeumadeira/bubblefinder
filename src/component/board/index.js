@@ -8,12 +8,14 @@ function Coluna(linhas) {
     return (<div>linha: {linhas.length}</div>);
 }
 
-function Board({ board_config, color_number, color_list }) {
+function Board({ board_config, score, set_score, color_list, tries, set_tries }) {
     let line_key = 0;
     let column_key = 0;
     const [markey_cell1, setCell1] = useState(null);
     const [markey_cell2, setCell2] = useState(null);
     const [board_matrix, setBoardMatrix] = useState({});
+    const [rotate, setRotate] = useState(0);
+    const [cell_number, setCellNumber] = useState(board_config[0].length * board_config.length);
 
     // [1, 1],
     // [1, 1],
@@ -36,7 +38,8 @@ function Board({ board_config, color_number, color_list }) {
 
     var stylecontainer = {
         gridTemplateColumns: `repeat(${board_config[0].length}, 40px [col-start])`,
-        gridTemplateRows: `repeat(${board_config.length}, 40px [col-start])`
+        gridTemplateRows: `repeat(${board_config.length}, 40px [col-start])`,
+        transform: `rotate(${rotate}deg)`
     };
 
     const board_matrix_component = board_config.map(
@@ -62,23 +65,65 @@ function Board({ board_config, color_number, color_list }) {
     ).flat().reduce((accumulator, currentValue) => Object.assign(accumulator, currentValue));
 
     useEffect(() => {
-        if (JSON.stringify(board_matrix) == '{}') {
-            console.log('renderiza board');
-            setBoardMatrix(board_matrix_component);
-        }
+        console.log(markey_cell1, markey_cell2, markey_cell1 == null || markey_cell2 == null);
+        if (markey_cell1 == null || markey_cell2 == null)
+            return;
 
-        if (markey_cell1 != null & markey_cell2 != null) {
+        if (markey_cell1 == markey_cell2)
+            return;
 
-            if (markey_cell1 == markey_cell2)
-                return;
-
-            console.log('compara', markey_cell1, markey_cell2);
-
-            setCell1(null);
-            setCell2(null);
+        if(cell_number==0){
+            finaliza_win();
             return;
         }
-    }, [markey_cell2, markey_cell1, board_matrix]);
+
+        if(tries==0){
+            finaliza_fail();
+            return;
+        }
+
+        setTimeout(compara, 500);
+    }, [markey_cell2, markey_cell1, rotate]);
+
+
+    useEffect(() => {
+        setBoardMatrix(board_matrix_component);
+    }, []);
+
+    function compara() {
+        const board = { ...board_matrix };
+        let rotate_board = false;
+
+        if (board[markey_cell1].color == board[markey_cell2].color) {
+            board[markey_cell1].disabled = true;
+            board[markey_cell2].disabled = true;
+            set_score(score + 100);
+            setCellNumber(cell_number-2);
+        } else {
+            board[markey_cell1].clicked = false;
+            board[markey_cell2].clicked = false;
+            rotate_board = true;
+            set_tries(tries-1);
+        }
+
+        setBoardMatrix(board);
+        setCell1(null);
+        setCell2(null);
+
+        if (rotate_board) {
+            setRotate(rotate + 90);
+        }
+    }
+
+    function finaliza_win(){
+        alert('finalizou');
+        console.log('finaliza_win');
+    };
+
+    function finaliza_fail(){
+        alert('você falhou');
+        console.log('finaliza_fail');
+    };
 
     function actionClick(key) {
         if (markey_cell1 == null) {
@@ -89,14 +134,14 @@ function Board({ board_config, color_number, color_list }) {
             }
         }
 
-        var b = {};
-        b[key] = {clicked: true}
+        var b = { ...board_matrix };
+        b[key].clicked = true;
+        // console.log(JSON.stringify(board_matrix), JSON.stringify(b));
 
-        setBoardMatrix({...board_matrix, ...b});
+        setBoardMatrix(board_matrix);
     }
     return (
         <>
-            <div>board</div>
             <div className='container' style={stylecontainer}>
                 {
                     Object.entries(board_matrix).map(([key, object]) =>
