@@ -1,28 +1,42 @@
 .container {
+    &.game_over {
+        .cell {
+            background: transparent;
+            .bubble {
+                display: block;
+            }
+
+            .bubble {
+                display: block;
+            }
+        }
+    }
+    
     display: inline-grid;
     column-gap: 10px;
     row-gap: 10px;
     justify-content: center;
     transition: transform 0.4s;
-}
 
-.cell {
-    background: gray;
-    padding: 5px;
-    .bubble {
-        display: none;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-    }
+    .cell {
+        background: gray;
+        padding: 5px;
 
-    &.cell_clicked {
-        background: transparent;
         .bubble {
-            display: block;
+            display: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
         }
-    }
-    &.cell_disabled {
-        visibility: hidden;
+
+        &.cell_clicked {
+            background: transparent;
+            .bubble {
+                display: block;
+            }
+        }
+        &.cell_disabled {
+            visibility: hidden;
+        }
     }
 }

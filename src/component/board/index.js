@@ -16,7 +16,7 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
     const [board_matrix, setBoardMatrix] = useState({});
     const [rotate, setRotate] = useState(0);
     const [cell_number, setCellNumber] = useState(board_config[0].length * board_config.length);
-
+    const [clickable, setClickable] = useState(true);
     // [1, 1],
     // [1, 1],
     // [1, 1],
@@ -65,22 +65,12 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
     ).flat().reduce((accumulator, currentValue) => Object.assign(accumulator, currentValue));
 
     useEffect(() => {
-        console.log(markey_cell1, markey_cell2, markey_cell1 == null || markey_cell2 == null);
+        // console.log(markey_cell1, markey_cell2, markey_cell1 == null || markey_cell2 == null);
         if (markey_cell1 == null || markey_cell2 == null)
             return;
 
         if (markey_cell1 == markey_cell2)
             return;
-
-        if(cell_number==0){
-            finaliza_win();
-            return;
-        }
-
-        if(tries==0){
-            finaliza_fail();
-            return;
-        }
 
         setTimeout(compara, 500);
     }, [markey_cell2, markey_cell1, rotate]);
@@ -90,6 +80,18 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
         setBoardMatrix(board_matrix_component);
     }, []);
 
+    useEffect(() => {
+        if (cell_number == 0) {
+            finaliza_win();
+            return;
+        }
+
+        if (tries == 0) {
+            finaliza_fail();
+            return;
+        }
+    }, [cell_number, tries]);
+
     function compara() {
         const board = { ...board_matrix };
         let rotate_board = false;
@@ -98,12 +100,12 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
             board[markey_cell1].disabled = true;
             board[markey_cell2].disabled = true;
             set_score(score + 100);
-            setCellNumber(cell_number-2);
+            setCellNumber(cell_number - 2);
         } else {
             board[markey_cell1].clicked = false;
             board[markey_cell2].clicked = false;
             rotate_board = true;
-            set_tries(tries-1);
+            set_tries(tries - 1);
         }
 
         setBoardMatrix(board);
@@ -115,17 +117,20 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
         }
     }
 
-    function finaliza_win(){
-        alert('finalizou');
+    function finaliza_win() {
+        set_score(score + (tries * 80));
         console.log('finaliza_win');
     };
 
-    function finaliza_fail(){
-        alert('você falhou');
+    function finaliza_fail() {
+        setClickable(false);
         console.log('finaliza_fail');
     };
 
     function actionClick(key) {
+        if(!clickable)
+            return;
+
         if (markey_cell1 == null) {
             setCell1(key);
         } else {
@@ -142,7 +147,7 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
     }
     return (
         <>
-            <div className='container' style={stylecontainer}>
+            <div className={`container ${!clickable ? 'game_over' : ''}`} style={stylecontainer}>
                 {
                     Object.entries(board_matrix).map(([key, object]) =>
                         <Cell

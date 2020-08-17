@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { levels as level_config_default, colors } from '../../configs'
+import { levels as level_config_default, colors, setLocalStorage } from '../../configs'
 import Board from '../../component/board';
 
 
@@ -10,7 +10,14 @@ function Level() {
     const [score, setScore] = useState(0);
     const [tries, setTries] = useState(level_config.tries);
 
-    // console.log(level_config);
+    useEffect(() => {
+        var lv = {};
+        lv[level] = {};
+        lv[level] = { score: (score > level_config.score ? score : level_config.score) };
+        setLocalStorage(lv);
+    }, [score]);
+
+    console.log(level_config);
     return (
         <div className="App">
             Level: {level}<br />
