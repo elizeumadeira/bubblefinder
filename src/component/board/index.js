@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.scss';
 import Cell from '../cell';
+import { useHistory } from 'react-router-dom'
 
 function Coluna(linhas) {
     console.log(linhas);
@@ -8,7 +9,12 @@ function Coluna(linhas) {
     return (<div>linha: {linhas.length}</div>);
 }
 
-function Board({ board_config, score, set_score, color_list, tries, set_tries }) {
+function Board({ allow_entry, board_config, score, set_score, color_list, tries, set_tries, set_next_level }) {
+    let history = useHistory()
+    if (!allow_entry) {
+        history.push('/level-selection');
+    }
+
     let line_key = 0;
     let column_key = 0;
     const [markey_cell1, setCell1] = useState(null);
@@ -17,10 +23,6 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
     const [rotate, setRotate] = useState(0);
     const [cell_number, setCellNumber] = useState(board_config[0].length * board_config.length);
     const [clickable, setClickable] = useState(true);
-    // [1, 1],
-    // [1, 1],
-    // [1, 1],
-    // [1, 1],
 
     function get_random_colors(colors) {
         var color_number = colors.length;
@@ -65,7 +67,6 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
     ).flat().reduce((accumulator, currentValue) => Object.assign(accumulator, currentValue));
 
     useEffect(() => {
-        // console.log(markey_cell1, markey_cell2, markey_cell1 == null || markey_cell2 == null);
         if (markey_cell1 == null || markey_cell2 == null)
             return;
 
@@ -105,7 +106,7 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
             board[markey_cell1].clicked = false;
             board[markey_cell2].clicked = false;
             set_tries(tries - 1);
-            if(tries > 1){
+            if (tries > 1) {
                 rotate_board = true;
             }
         }
@@ -121,7 +122,7 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
 
     function finaliza_win() {
         set_score(score + (tries * 80));
-        console.log('finaliza_win');
+        set_next_level(true);
     };
 
     function finaliza_fail() {
@@ -130,7 +131,7 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
     };
 
     function actionClick(key) {
-        if(!clickable)
+        if (!clickable)
             return;
 
         if (markey_cell1 == null) {
@@ -148,21 +149,19 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
         setBoardMatrix(board_matrix);
     }
     return (
-        <>
-            <div className={`container ${!clickable ? 'game_over' : ''}`} style={stylecontainer}>
-                {
-                    Object.entries(board_matrix).map(([key, object]) =>
-                        <Cell
-                            disabled={object.disabled}
-                            key={key}
-                            color={object.color}
-                            clicked={object.clicked}
-                            onClick={() => actionClick(key)}
-                        />
-                    )
-                }
-            </div>
-        </>
+        <div className={`container ${!clickable ? 'game_over' : ''}`} style={stylecontainer}>
+            {
+                Object.entries(board_matrix).map(([key, object]) =>
+                    <Cell
+                        disabled={object.disabled}
+                        key={key}
+                        color={object.color}
+                        clicked={object.clicked}
+                        onClick={() => actionClick(key)}
+                    />
+                )
+            }
+        </div>
     );
 }
 
