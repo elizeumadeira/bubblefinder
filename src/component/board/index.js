@@ -73,7 +73,7 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
             return;
 
         setTimeout(compara, 500);
-    }, [markey_cell2, markey_cell1, rotate]);
+    }, [markey_cell2, markey_cell1]);
 
 
     useEffect(() => {
@@ -104,8 +104,10 @@ function Board({ board_config, score, set_score, color_list, tries, set_tries })
         } else {
             board[markey_cell1].clicked = false;
             board[markey_cell2].clicked = false;
-            rotate_board = true;
             set_tries(tries - 1);
+            if(tries > 1){
+                rotate_board = true;
+            }
         }
 
         setBoardMatrix(board);
