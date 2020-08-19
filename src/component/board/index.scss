@@ -17,6 +17,8 @@
     row-gap: 10px;
     justify-content: center;
     transition: transform 0.4s;
+    grid-template-columns: repeat(6, 40px);
+    grid-template-rows: repeat(6, 40px);
 
     .cell {
         background: gray;

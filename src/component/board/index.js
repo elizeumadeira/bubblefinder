@@ -9,7 +9,7 @@ function Coluna(linhas) {
     return (<div>linha: {linhas.length}</div>);
 }
 
-function Board({ allow_entry, board_config, score, set_score, color_list, tries, set_tries, set_next_level }) {
+function Board({ allow_entry, board_config, score, set_score, color_list, color_number, tries, set_tries, set_next_level }) {
     let history = useHistory()
     if (!allow_entry) {
         history.push('/level-selection');
@@ -21,7 +21,7 @@ function Board({ allow_entry, board_config, score, set_score, color_list, tries,
     const [markey_cell2, setCell2] = useState(null);
     const [board_matrix, setBoardMatrix] = useState({});
     const [rotate, setRotate] = useState(0);
-    const [cell_number, setCellNumber] = useState(board_config[0].length * board_config.length);
+    const [cell_number, setCellNumber] = useState(color_number);
     const [clickable, setClickable] = useState(true);
 
     function get_random_colors(colors) {
@@ -39,8 +39,6 @@ function Board({ allow_entry, board_config, score, set_score, color_list, tries,
     let random_colors = get_random_colors(color_list.concat(color_list))
 
     var stylecontainer = {
-        gridTemplateColumns: `repeat(${board_config[0].length}, 40px [col-start])`,
-        gridTemplateRows: `repeat(${board_config.length}, 40px [col-start])`,
         transform: `rotate(${rotate}deg)`
     };
 
@@ -144,7 +142,6 @@ function Board({ allow_entry, board_config, score, set_score, color_list, tries,
 
         var b = { ...board_matrix };
         b[key].clicked = true;
-        // console.log(JSON.stringify(board_matrix), JSON.stringify(b));
 
         setBoardMatrix(board_matrix);
     }

@@ -1,0 +1,10 @@
+.sub-header-level{
+    display: inline-grid;
+
+    grid-template-columns: 100px 100px 140px 100px;
+    column-gap: 10px;
+    color: #FFF;
+    font-size: 20px;
+    align-items: center;
+    justify-items: center;
+}

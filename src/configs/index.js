@@ -6,7 +6,12 @@ const default_level = {
         color_number: 2,
         tries: 2,
         board: [
-            [1, 1]
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]
         ]
     },
     2: {
@@ -15,8 +20,12 @@ const default_level = {
         color_number: 4,
         tries: 3,
         board: [
-            [1, 1],
-            [1, 1]
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]
         ]
     },
     3: {
@@ -25,10 +34,12 @@ const default_level = {
         color_number: 8,
         tries: 6,
         board: [
-            [1, 1],
-            [1, 1],
-            [1, 1],
-            [1, 1],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0]
         ]
     },
     4: {
@@ -37,10 +48,12 @@ const default_level = {
         color_number: 12,
         tries: 8,
         board: [
-            [1, 1, 1, 1],
-            [1, 0, 0, 1],
-            [1, 0, 0, 1],
-            [1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1, 0],
+            [0, 1, 0, 0, 1, 0],
+            [0, 1, 0, 0, 1, 0],
+            [0, 1, 1, 1, 1, 0],
+            [0, 0, 0, 0, 0, 0]
         ]
     },
     5: {
@@ -131,7 +144,7 @@ const default_level = {
 
 const levels = () => {
     var ls = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (ls == 'null') {
+    if (ls == 'null' || ls == null) {
         ls = {};
     } else {
         ls = JSON.parse(ls);
@@ -141,7 +154,7 @@ const levels = () => {
     for (let [key, storage] of Object.entries(default_level)) {
         if (ls.hasOwnProperty(key)) {
             config[key] = { ...default_level[key], ...ls[key] };
-        }else{
+        } else {
             config[key] = { ...default_level[key] };
         }
     }
