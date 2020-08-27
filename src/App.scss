@@ -1,0 +1,37 @@
+@import "./configs/index.scss";
+body {
+  @include fundo-principal;
+}
+
+.App {
+  text-align: center;
+}
+
+.ModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(198, 198, 198, 0.7);
+
+  .Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+
+    @include fundo-principal;
+
+    ul {
+      @include button-container;
+      padding: 0;
+      list-style: none;
+
+      li {
+        @include button-style;
+      }
+    }
+  }
+}

@@ -81,9 +81,16 @@ function Level() {
                 />
             </div>
 
-            <button onClick={toggleIsOptionModal}>Options</button>
+            <div className="button-container">
+                <button className="button" onClick={toggleIsOptionModal}>Options</button>
+            </div>
 
-            <Modal isOpen={isOptionOpen} onRequestClose={toggleIsOptionModal} contentLabel="Dialog Option">
+            <Modal 
+                isOpen={isOptionOpen} 
+                onRequestClose={toggleIsOptionModal} 
+                className="Modal" 
+                overlayClassName="ModalOverlay" 
+                contentLabel="Dialog Option">
                 <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
             </Modal>
 

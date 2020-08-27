@@ -3,17 +3,17 @@
     min-height: 10vh;
     margin-bottom: 30px;
 
-    ul{
+    ul {
         display: inline-grid;
         grid-template-columns: repeat(3, 1fr);
         align-items: center;
-    justify-content: center;
-        
+        justify-content: center;
+
         list-style: none;
 
-        li{
-            a{
-                color: #FFF;
+        li {
+            a {
+                color: #fff;
                 text-decoration: none;
                 font-size: 2em;
             }
