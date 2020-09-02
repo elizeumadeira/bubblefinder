@@ -14,7 +14,7 @@
 .App {
     .button-container{
         @include button-container;
-        button {
+        button, a {
             @include button-style;
         }
     }

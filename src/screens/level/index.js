@@ -7,8 +7,6 @@ import Modal from 'react-modal';
 
 import './index.scss';
 
-Modal.setAppElement("#root");
-
 function Level() {
     const { level } = useParams();
     const level_config = level_config_default()[level];
@@ -44,7 +42,6 @@ function Level() {
             var lv = {};
             lv[parseInt(level) + 1] = {};
             lv[parseInt(level) + 1] = { unlock: true };
-            console.log(lv);
             setLocalStorage(lv);
         }
     }, [nv]);
@@ -58,7 +55,7 @@ function Level() {
     }
 
     return (
-        <div className="App">
+        <>
             <div className="sub-header-level">
                 <div>Level: {level}</div>
                 <div>Tries: {tries}</div>
@@ -103,7 +100,7 @@ function Level() {
                 <div>My modal dialog.</div>
                 <button onClick={toggleIsWinModal}>Close modal</button>
             </Modal>
-        </div>
+        </>
     );
 }
 
