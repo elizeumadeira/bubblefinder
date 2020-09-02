@@ -6,8 +6,8 @@ import './index.scss';
 
 function LevelSelection() {
   return (
-    <>
-      <div className="container-level-selection">
+    <div className="container-level-selection">
+      <div className="level-selection">
         {
           Object.entries(levels()).map(([key, entry]) =>
             <CellLS
@@ -22,7 +22,7 @@ function LevelSelection() {
       <div className="button-container">
         <Link className="button" to="/">Voltar</Link>
       </div>
-    </>
+    </div>
   );
 }
 

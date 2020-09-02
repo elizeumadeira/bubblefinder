@@ -4,6 +4,8 @@ import { eraseLocalStorage } from '../../configs/index.js';
 import Modal from 'react-modal';
 import './index.scss';
 
+Modal.setAppElement('#root');
+
 function Options() {
   var [isResetConfirmOpen, toggleIsResetConfirmOpen] = useState(false);
 
@@ -30,7 +32,7 @@ function Options() {
         <div>Are you sure you want to reset the BubbleFinder data?.</div>
         <div>THIS ACTION CANNOT BE UNDONE!!.</div>
         <div className="button-container">
-          <button onClick={() => {toggleIsResetConfirmOpen(false); eraseLocalStorage();}}>Reset</button>
+          <button onClick={() => { toggleIsResetConfirmOpen(false); eraseLocalStorage(); }}>Reset</button>
           <button onClick={() => toggleIsResetConfirmOpen(false)}>Cancel</button>
         </div>
       </Modal>

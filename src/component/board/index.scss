@@ -11,24 +11,36 @@
             }
         }
     }
-    
-    display: inline-grid;
+
+    //(screen width - 6 columns) gets 80% (for compensate padding)
+    $grid-w: calc((100vw / 6) * 0.8);
+    //screen height - 200px (from the first and last row - 100px each) gets 80% (for compensate padding)
+    $grid-h: calc(((100vh - 200px) / 6) * 0.8);
+    //gets the minimum value for exact squareness
+    $grid-square: Min($grid-h, $grid-w);
+
+    display: grid;
+    grid-template-columns: repeat(6, $grid-square);
+    grid-template-rows: repeat(6, $grid-square);
     column-gap: 10px;
     row-gap: 10px;
+
     justify-content: center;
     transition: transform 0.4s;
-    grid-template-columns: repeat(6, 40px);
-    grid-template-rows: repeat(6, 40px);
+    height: 100%;
 
     .cell {
         background: gray;
+        // background: transparent;
         padding: 5px;
 
         .bubble {
             display: none;
-            width: 30px;
-            height: 30px;
+            // display: block;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
+            margin: auto;
         }
 
         &.cell_clicked {

@@ -55,7 +55,7 @@ function Level() {
     }
 
     return (
-        <>
+        <div className="container-level">
             <div className="sub-header-level">
                 <div>Level: {level}</div>
                 <div>Tries: {tries}</div>
@@ -85,8 +85,8 @@ function Level() {
             <Modal 
                 isOpen={isOptionOpen} 
                 onRequestClose={toggleIsOptionModal} 
-                className="Modal" 
-                overlayClassName="ModalOverlay" 
+                className="Modal bubble-finder-modal"
+                overlayClassName="ModalOverlay bubble-finder-modal-overlay" 
                 contentLabel="Dialog Option">
                 <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
             </Modal>
@@ -100,7 +100,7 @@ function Level() {
                 <div>My modal dialog.</div>
                 <button onClick={toggleIsWinModal}>Close modal</button>
             </Modal>
-        </>
+        </div>
     );
 }
 

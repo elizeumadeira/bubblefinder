@@ -6,14 +6,18 @@ import MainLogo from '../../component/main-logo/index';
 
 export default (props) => {
     function get_last_level() {
-        return Object.entries(levels()).reduce((accumulator, current_value) => {
-            let [key, entry] = current_value;
+        var level = Object.entries(levels());
+        let level_start = 1;
+
+        for (const item of level) {
+            let [key, entry] = item;
             if (entry.unlock) {
-                accumulator = key;
+                level_start = key;
+            } else {
+                break;
             }
-            console.log(accumulator);
-            return accumulator;
-        });
+        }
+        return level_start;
     }
 
     return (

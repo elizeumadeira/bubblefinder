@@ -1,21 +1,10 @@
-@import "../../configs/index.scss";
+@import "../../themes/index.scss";
 
 .sub-header-level {
-    display: inline-grid;
+    display: grid;
 
-    grid-template-columns: 100px 100px 140px 100px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 10px;
-    color: #fff;
-    font-size: 20px;
     align-items: center;
     justify-items: center;
-}
-
-.App {
-    .button-container{
-        @include button-container;
-        button, a {
-            @include button-style;
-        }
-    }
 }
