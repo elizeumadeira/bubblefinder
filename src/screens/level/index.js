@@ -33,18 +33,17 @@ function Level() {
     }
 
     useEffect(() => {
-        var lv = {};
-        lv[level] = {};
-        lv[level] = { score: (score > level_config.score ? score : level_config.score) };
+        var lv = { levels: {} };
+        lv.levels[level] = {};
+        lv.levels[level] = { score: (score > level_config.score ? score : level_config.score) };
         setLocalStorage(lv);
     }, [score]);
 
     useEffect(() => {
-        console.log(nv);
         if (nv) {
-            var lv = {};
-            lv[parseInt(level) + 1] = {};
-            lv[parseInt(level) + 1] = { unlock: true };
+            var lv = { levels: {} };
+            lv.levels[parseInt(level) + 1] = {};
+            lv.levels[parseInt(level) + 1] = { unlock: true };
             setLocalStorage(lv);
 
             setIsWinOpen(true);
@@ -106,7 +105,7 @@ function Level() {
                 className="Modal bubble-finder-modal"
                 overlayClassName="ModalOverlay bubble-finder-modal-overlay"
             >
-                <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level}  toggle_win_modal={toggleIsWinModal} />
+                <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
             </Modal>
 
             <Modal

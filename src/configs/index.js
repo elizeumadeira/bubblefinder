@@ -142,38 +142,49 @@ const default_level = {
     },
 };
 
+const misc_config = {
+    theme: 'bubble-finder',
+    levels: {}
+};
+
+function get_full_config_default() {
+    var ls = { ...misc_config };
+    ls.levels = { ...default_level };
+    return ls;
+}
+
+var _merge = function (target, source) {
+    // Iterate through `source` properties and if an `Object` set property to merge of `target` and `source` properties
+    for (const key of Object.keys(source)) {
+        if (source[key] instanceof Object) Object.assign(source[key], _merge(target[key], source[key]))
+    }
+
+    // Join `target` and modified `source`
+    Object.assign(target || {}, source)
+    return target
+}
+
 const levels = () => {
+    // console.log(default_level);
     var ls = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (ls == 'null' || ls == null) {
-        ls = {};
+        ls = get_full_config_default();
     } else {
         ls = JSON.parse(ls);
     }
 
-    var config = {};
-    for (let [key, storage] of Object.entries(default_level)) {
-        if (ls.hasOwnProperty(key)) {
-            config[key] = { ...default_level[key], ...ls[key] };
-        } else {
-            config[key] = { ...default_level[key] };
-        }
-    }
-    return config;
+    return ls.levels;
 };
 
 function setLocalStorage(storage) {
-    var config_default = { ...levels() };
-    for (let [key, value] of Object.entries(config_default)) {
-        if (storage.hasOwnProperty(key)) {
-            config_default[key] = { ...config_default[key], ...storage[key] };
-        }
-    }
+    var config_default = get_full_config_default();;
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(config_default));
+    const new_config = _merge(config_default, storage);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(new_config));
 }
 
-function eraseLocalStorage(){
-    localStorage.setItem(LOCAL_STORAGE_KEY, '{}');
+function eraseLocalStorage() {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
 }
 
 const colors = [
@@ -182,4 +193,4 @@ const colors = [
     "#8B0707", "#329262", "#5574A6", "#3B3EAC"
 ];
 
-export { levels, colors, setLocalStorage, eraseLocalStorage };
+export { levels, colors, setLocalStorage, eraseLocalStorage, misc_config };

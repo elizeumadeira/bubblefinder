@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { eraseLocalStorage } from '../../configs/index.js';
 import Modal from 'react-modal';
@@ -7,6 +7,8 @@ import './index.scss';
 Modal.setAppElement('#root');
 
 function Options() {
+  // const theme = useContext(ThemeContext);
+
   var [isResetConfirmOpen, toggleIsResetConfirmOpen] = useState(false);
 
   return (
@@ -19,7 +21,8 @@ function Options() {
         <div className="campo">
           <label>Theme</label>
           <select>
-            <option value="1">BubbleFinder</option>
+            <option value="bubble-finder">BubbleFinder</option>
+            <option value="mario-world">Mario</option>
           </select>
         </div>
       </div>

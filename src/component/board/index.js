@@ -3,12 +3,6 @@ import './index.scss';
 import Cell from '../cell';
 import { useHistory } from 'react-router-dom'
 
-function Coluna(linhas) {
-    console.log(linhas);
-
-    return (<div>linha: {linhas.length}</div>);
-}
-
 function Board({ allow_entry, board_config, score, set_score, color_list, color_number, tries, set_tries, set_next_level, set_fail }) {
     let history = useHistory()
     if (!allow_entry) {
