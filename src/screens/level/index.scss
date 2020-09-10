@@ -16,3 +16,21 @@
     row-gap: 20px;
     height: 100%;
 }
+
+.win-level-modal, .fail-level-modal {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr auto;
+    row-gap: 20px;
+    height: 100%;
+
+    .bubble-finder-header-logo {
+        padding-top: 30px;
+    }
+
+    .message{
+        align-self: center;
+        font-size: 2em;
+        padding: 0 20px;
+    }
+}

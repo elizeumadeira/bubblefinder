@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { levels as level_config_default, colors, setLocalStorage } from '../../configs'
 import Board from '../../component/board';
 import OptionLevel from './options-level';
+import WinLevel from './win-level';
+import FailLevel from './fail-level';
 import Modal from 'react-modal';
 
 import './index.scss';
@@ -38,11 +40,14 @@ function Level() {
     }, [score]);
 
     useEffect(() => {
+        console.log(nv);
         if (nv) {
             var lv = {};
             lv[parseInt(level) + 1] = {};
             lv[parseInt(level) + 1] = { unlock: true };
             setLocalStorage(lv);
+
+            setIsWinOpen(true);
         }
     }, [nv]);
 
@@ -52,6 +57,8 @@ function Level() {
         setScore(0);
         setTries(level_config.tries);
         setIsOptionOpen(false);
+        setIsWinOpen(false);
+        setNextLevel(false);
     }
 
     return (
@@ -75,6 +82,7 @@ function Level() {
                     set_tries={setTries}
                     set_next_level={setNextLevel}
                     restart_level={restartLevel}
+                    set_fail={toggleIsFailedModal}
                 />
             </div>
 
@@ -82,23 +90,33 @@ function Level() {
                 <button className="button" onClick={toggleIsOptionModal}>Options</button>
             </div>
 
-            <Modal 
-                isOpen={isOptionOpen} 
-                onRequestClose={toggleIsOptionModal} 
+            <Modal
+                isOpen={isOptionOpen}
+                onRequestClose={toggleIsOptionModal}
                 className="Modal bubble-finder-modal"
-                overlayClassName="ModalOverlay bubble-finder-modal-overlay" 
+                overlayClassName="ModalOverlay bubble-finder-modal-overlay"
                 contentLabel="Dialog Option">
                 <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
             </Modal>
 
-            <Modal isOpen={isFailedOpen} onRequestClose={toggleIsFailedModal} contentLabel="My dialog">
-                <div>My modal dialog.</div>
-                <button onClick={toggleIsFailedModal}>Close modal</button>
+            <Modal
+                isOpen={isWinOpen}
+                onRequestClose={toggleIsWinModal}
+                contentLabel="My dialog"
+                className="Modal bubble-finder-modal"
+                overlayClassName="ModalOverlay bubble-finder-modal-overlay"
+            >
+                <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level}  toggle_win_modal={toggleIsWinModal} />
             </Modal>
 
-            <Modal isOpen={isWinOpen} onRequestClose={toggleIsWinModal} contentLabel="My dialog">
-                <div>My modal dialog.</div>
-                <button onClick={toggleIsWinModal}>Close modal</button>
+            <Modal
+                isOpen={isFailedOpen}
+                onRequestClose={toggleIsFailedModal}
+                contentLabel="My dialog"
+                className="Modal bubble-finder-modal"
+                overlayClassName="ModalOverlay bubble-finder-modal-overlay"
+            >
+                <FailLevel restart={restartLevel} toggle_fail_modal={toggleIsFailedModal} />
             </Modal>
         </div>
     );
