@@ -16,6 +16,30 @@
     bottom: 0;
 
     .Modal {
+        &.ModalOptions{
+            &>div:first-child{
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                height: 100%;
+
+                &>div{
+                    align-self: center;
+                    text-align: center;
+                }
+            }
+            display: grid;
+            grid-template-rows: 75% auto;
+            grid-template-columns: 1fr;
+            height: 100%;
+
+            .button-container{
+                @include bf-button-container;
+
+                button {
+                    @include bf-button-style;
+                }
+            }
+        }
         position: absolute;
         top: 40px;
         left: 40px;

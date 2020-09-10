@@ -17,17 +17,11 @@
         padding: 10px;
 
         a {
-            background-color: lightgrey;
-            font-size: 32px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: blue;
 
             &.cell_disabled {
-                background-color: gray;
-                color: lightgray;
+                
             }
         }
     }

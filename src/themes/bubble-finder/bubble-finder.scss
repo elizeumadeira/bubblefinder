@@ -104,7 +104,22 @@ $background-color-button: #495161;
     }
 
     // SCREEN LEVEL SELECTION
-
+    .container-level-selection {
+        .level-selection {
+            a {
+                background-color: lightgrey;
+                font-size: 32px;
+                justify-content: center;
+                text-decoration: none;
+                color: blue;
+    
+                &.cell_disabled {
+                    background-color: gray;
+                    color: lightgray;
+                }
+            }
+        }
+    }
 }
 
 .bubble-finder-modal-overlay {
@@ -113,7 +128,15 @@ $background-color-button: #495161;
     .bubble-finder-modal.Modal {
         @include bf-fundo-principal;
 
+        .bubble-finder-header-logo{
+            margin: 0;
+            align-self: center;
+        }
+
         ul {
+            width: 100%;
+            align-self: center;
+
             @include bf-button-container;
             li {
                 @include bf-button-style;

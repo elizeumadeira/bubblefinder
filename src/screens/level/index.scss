@@ -8,3 +8,11 @@
     align-items: center;
     justify-items: center;
 }
+
+.option-level-modal {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40% 60%;
+    row-gap: 20px;
+    height: 100%;
+}

@@ -4,7 +4,7 @@ import MainLogo from '../../component/main-logo/index';
 
 export default (props) => {
     return (
-        <>
+        <div className="option-level-modal">
             <MainLogo />
             <ul>
                 <li>
@@ -20,6 +20,6 @@ export default (props) => {
                     <Link to="/">Quit</Link>
                 </li>
             </ul>
-        </>
+        </div>
     );
 }

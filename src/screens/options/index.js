@@ -28,9 +28,17 @@ function Options() {
         <Link className="button" to="/">Back</Link>
       </div>
 
-      <Modal isOpen={isResetConfirmOpen} onRequestClose={toggleIsResetConfirmOpen} contentLabel="Confirm Reset">
-        <div>Are you sure you want to reset the BubbleFinder data?.</div>
-        <div>THIS ACTION CANNOT BE UNDONE!!.</div>
+      <Modal
+        isOpen={isResetConfirmOpen}
+        onRequestClose={toggleIsResetConfirmOpen}
+        contentLabel="Confirm Reset"
+        className="Modal ModalOptions bubble-finder-modal"
+        overlayClassName="ModalOverlay bubble-finder-modal-overlay"
+      >
+        <div>
+          <div>Are you sure you want to reset the BubbleFinder data?.</div>
+          <div>THIS ACTION CANNOT BE UNDONE!!.</div>
+        </div>
         <div className="button-container">
           <button onClick={() => { toggleIsResetConfirmOpen(false); eraseLocalStorage(); }}>Reset</button>
           <button onClick={() => toggleIsResetConfirmOpen(false)}>Cancel</button>
