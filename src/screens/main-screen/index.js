@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { levels } from '../../configs';
+import { storedConfigs } from '../../configs';
 import './index.scss';
 import MainLogo from '../../component/main-logo/index';
 
 export default (props) => {
     function get_last_level() {
-        var level = Object.entries(levels());
+        var level = Object.entries(storedConfigs().levels);
         let level_start = 1;
 
         for (const item of level) {

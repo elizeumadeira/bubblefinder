@@ -1,0 +1,271 @@
+@font-face {
+    font-family: "Mario Theme";
+    src: url("font/SuperMario256.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Mario Main Font";
+    src: url("font/Super-Mario-World.ttf") format("truetype");
+}
+
+$background-color-button: red;
+$bg-width: 5190px;
+
+@mixin bf-fundo-principal-mw {
+    // background-image: url() ;
+    // background-repeat: no-repeat;
+
+    background: url("yoshis-island-2.jpg") repeat;
+    background-size: cover;
+
+    animation: slide 120s linear infinite;
+    animation-timing-function: linear;
+
+    @keyframes slide {
+        100% {
+            background-position: $bg-width 0;
+        }
+    }
+}
+@mixin bf-button-container-mw {
+    width: 90%;
+    margin: 0 auto;
+}
+
+@mixin bf-button-basic-mw {
+    display: block;
+    height: 80px;
+    border: none;
+    font-size: 2em;
+    text-align: left;
+    padding-left: 50px;
+
+    // background: $background-color-button;
+}
+
+@mixin bf-button-style-mw {
+    @include bf-button-basic-mw;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease-out, margin-top 0.3s ease-out, margin-left 0.3s ease-out;
+    width: 100%;
+    color: #fff;
+
+    &:hover {
+        // box-shadow: 10px 10px 5px 0px rgba(40, 44, 52, 1);
+        // margin-left: -10px;
+        background-image: url("./setinha.png");
+        background-repeat: no-repeat;
+        background-size: 30px 20px;
+        background-position: 10px 7px;
+    }
+
+    a {
+        display: block;
+        height: 100%;
+    }
+}
+
+@mixin a {
+    color: #fff;
+    text-decoration: none;
+}
+
+@mixin main-shadow-mw {
+    text-shadow: rgb(0, 0, 0) 5px 0px 0px, rgb(0, 0, 0) 4.90033px 0.993347px 0px, rgb(0, 0, 0) 4.60531px 1.94709px 0px,
+        rgb(0, 0, 0) 4.12668px 2.82321px 0px, rgb(0, 0, 0) 3.48353px 3.58678px 0px, rgb(0, 0, 0) 2.70151px 4.20736px 0px,
+        rgb(0, 0, 0) 1.81179px 4.6602px 0px, rgb(0, 0, 0) 0.849836px 4.92725px 0px,
+        rgb(0, 0, 0) -0.145998px 4.99787px 0px, rgb(0, 0, 0) -1.13601px 4.86924px 0px,
+        rgb(0, 0, 0) -2.08073px 4.54649px 0px, rgb(0, 0, 0) -2.94251px 4.04248px 0px,
+        rgb(0, 0, 0) -3.68697px 3.37732px 0px, rgb(0, 0, 0) -4.28444px 2.57751px 0px,
+        rgb(0, 0, 0) -4.71111px 1.67494px 0px, rgb(0, 0, 0) -4.94996px 0.7056px 0px,
+        rgb(0, 0, 0) -4.99147px -0.291871px 0px, rgb(0, 0, 0) -4.83399px -1.27771px 0px,
+        rgb(0, 0, 0) -4.48379px -2.2126px 0px, rgb(0, 0, 0) -3.95484px -3.05929px 0px,
+        rgb(0, 0, 0) -3.26822px -3.78401px 0px, rgb(0, 0, 0) -2.4513px -4.35788px 0px,
+        rgb(0, 0, 0) -1.53666px -4.75801px 0px, rgb(0, 0, 0) -0.560763px -4.96845px 0px,
+        rgb(0, 0, 0) 0.437495px -4.98082px 0px, rgb(0, 0, 0) 1.41831px -4.79462px 0px,
+        rgb(0, 0, 0) 2.34258px -4.41727px 0px, rgb(0, 0, 0) 3.17346px -3.86382px 0px,
+        rgb(0, 0, 0) 3.87783px -3.15633px 0px, rgb(0, 0, 0) 4.4276px -2.32301px 0px,
+        rgb(0, 0, 0) 4.80085px -1.39708px 0px, rgb(0, 0, 0) 4.98271px -0.415447px 0px;
+}
+
+@mixin logo-mw {
+    .logo {
+        margin: 0 auto;
+        width: 150px;
+
+        background-image: url("bubble-finder-mw-logo.png");
+        background-repeat: no-repeat;
+        background-size: 150px 150px;
+        height: 150px;
+    }
+
+    .name {
+        font-family: "Mario Theme", sans-serif;
+        font-size: 2.5em;
+        text-align: center;
+        @include main-shadow-mw;
+
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+        }
+
+        & > div:first-child > span:nth-child(1) {
+            color: #009ddb;
+        }
+        & > div:first-child > span:nth-child(2) {
+            color: #fcd000;
+        }
+        & > div:first-child > span:nth-child(3) {
+            color: #e71e07;
+        }
+        & > div:first-child > span:nth-child(4) {
+            color: #42b132;
+        }
+        & > div:first-child > span:nth-child(5) {
+            color: #fcd000;
+        }
+        & > div:first-child > span:nth-child(6) {
+            color: #e71e07;
+        }
+        & > div:nth-child(2) > span:nth-child(1) {
+            color: #42b132;
+        }
+        & > div:nth-child(2) > span:nth-child(2) {
+            color: #fcd000;
+        }
+        & > div:nth-child(2) > span:nth-child(3) {
+            color: #009ddb;
+        }
+        & > div:nth-child(2) > span:nth-child(4) {
+            color: #e71e07;
+        }
+        & > div:nth-child(2) > span:nth-child(5) {
+            color: #009ddb;
+        }
+        & > div:nth-child(2) > span:nth-child(6) {
+            color: #fcd000;
+        }
+    }
+}
+
+.mario-world {
+    @include bf-fundo-principal-mw;
+    font-family: "Mario Main Font";
+    @include main-shadow-mw;
+    overflow: hidden;
+
+    a {
+        @include a;
+    }
+
+    .button-container {
+        @include bf-button-container-mw;
+        a,
+        button {
+            @include bf-button-style-mw;
+        }
+    }
+
+    .form {
+        width: 90%;
+        margin: 0 auto;
+
+        .campo {
+            display: grid;
+            grid-template-columns: 30% auto;
+            column-gap: 20px;
+            margin-bottom: 20px;
+
+            label {
+                align-self: center;
+                color: #fff;
+                font-weight: bold;
+            }
+            button {
+                @include bf-button-basic-mw;
+            }
+            select {
+                appearance: none;
+                @include bf-button-basic-mw;
+            }
+        }
+    }
+
+    // SCREEN MAIN MENU
+    .container-main-menu {
+        .bubble-finder-header-logo {
+            place-self: center;
+
+            @include logo-mw;
+        }
+
+        ul {
+            li {
+                @include bf-button-style-mw;
+            }
+        }
+    }
+
+    // SCREEN LEVEL
+    .container-level {
+        .sub-header-level {
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+
+    // SCREEN LEVEL SELECTION
+    .container-level-selection {
+        .level-selection {
+            a {
+                background-color: lightgrey;
+                font-size: 32px;
+                justify-content: center;
+                text-decoration: none;
+                color: blue;
+
+                &.cell_disabled {
+                    background-color: gray;
+                    color: lightgray;
+                }
+            }
+        }
+    }
+
+    //SCREEN OPTIONS
+    .container-options {
+        padding-top: 30%;
+        display: grid;
+        grid-template-rows: 70% 100px;
+        height: 100%;
+    }
+}
+
+.bubble-finder-modal-overlay {
+    background-color: rgba(198, 198, 198, 0.7);
+
+    .bubble-finder-modal.Modal {
+        @include bf-fundo-principal-mw;
+
+        .bubble-finder-header-logo {
+            margin: 0;
+            align-self: center;
+        }
+
+        ul {
+            width: 100%;
+            align-self: center;
+
+            @include bf-button-container-mw;
+            li {
+                @include bf-button-style-mw;
+
+                a {
+                    @include a;
+                }
+            }
+        }
+    }
+}

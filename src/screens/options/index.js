@@ -1,18 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { eraseLocalStorage } from '../../configs/index.js';
+import ThemeContext from '../../configs/theme-context.js';
 import Modal from 'react-modal';
 import './index.scss';
 
 Modal.setAppElement('#root');
 
 function Options() {
-  // const theme = useContext(ThemeContext);
-
+  const { theme, setTheme } = useContext(ThemeContext);
   var [isResetConfirmOpen, toggleIsResetConfirmOpen] = useState(false);
 
   return (
-    <>
+    <div className="container-options">
       <div className="form">
         <div className="campo">
           <label>Reset BubbleFinder data</label>
@@ -20,7 +20,7 @@ function Options() {
         </div>
         <div className="campo">
           <label>Theme</label>
-          <select>
+          <select value={theme} onChange={(e) => { setTheme(e.target.value); }}>
             <option value="bubble-finder">BubbleFinder</option>
             <option value="mario-world">Mario</option>
           </select>
@@ -35,8 +35,8 @@ function Options() {
         isOpen={isResetConfirmOpen}
         onRequestClose={toggleIsResetConfirmOpen}
         contentLabel="Confirm Reset"
-        className="Modal ModalOptions bubble-finder-modal"
-        overlayClassName="ModalOverlay bubble-finder-modal-overlay"
+        className={`Modal ModalOptions ${theme}-modal`}
+        overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
       >
         <div>
           <div>Are you sure you want to reset the BubbleFinder data?.</div>
@@ -47,7 +47,7 @@ function Options() {
           <button onClick={() => toggleIsResetConfirmOpen(false)}>Cancel</button>
         </div>
       </Modal>
-    </>
+    </div>
   );
 }
 

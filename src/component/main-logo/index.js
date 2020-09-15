@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from '../../themes/bubble-finder/bubble-finder-logo.png';
-import './index.scss';
 
-export default () =>
-    <div className="bubble-finder-header-logo">
+export default () => {
+
+    var BFLogo = <div className="bubble-finder-header-logo">
         <div className="logo">
-            <img src={logo} alt="Logo" />
+
         </div>
         <div className="name">
             <div>
@@ -16,3 +15,6 @@ export default () =>
             </div>
         </div>
     </div>
+
+    return BFLogo;
+}

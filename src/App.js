@@ -1,25 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Routes from "./routes";
 import { BrowserRouter as Router } from "react-router-dom";
-
-const themes = {
-  'bubble-finder': {
-    class: "bubble-finder"
-  },
-  'mario': {
-    class: "mario"
-  }
-};
-
-const ThemeContext = React.createContext(themes['bubble-finder']);
+import ThemeContext from './configs/theme-context.js';
+import { setLocalStorage, storedConfigs } from './configs/index.js'
 
 function App() {
-  const theme = useContext(ThemeContext);
-  
+  const [theme, setTheme] = useState(storedConfigs().theme);
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      setLocalStorage({
+        theme: theme
+      });
+    }
+  }, [theme])
+
   return (
     <Router>
-      <ThemeContext.Provider value={themes.dark}>
-        <div className={theme.class}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <div className={theme}>
           <Routes />
         </div>
       </ThemeContext.Provider>

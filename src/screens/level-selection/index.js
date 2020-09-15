@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { levels } from '../../configs';
+import { storedConfigs } from '../../configs';
 import CellLS from './cell-level-selection';
 import './index.scss';
 
@@ -9,7 +9,7 @@ function LevelSelection() {
     <div className="container-level-selection">
       <div className="level-selection">
         {
-          Object.entries(levels()).map(([key, entry]) =>
+          Object.entries(storedConfigs().levels).map(([key, entry]) =>
             <CellLS
               key={key}
               disabled={entry.unlock}

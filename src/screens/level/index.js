@@ -6,6 +6,7 @@ import OptionLevel from './options-level';
 import WinLevel from './win-level';
 import FailLevel from './fail-level';
 import Modal from 'react-modal';
+import ThemeContext from '../../configs/theme-context.js';
 
 import './index.scss';
 
@@ -89,34 +90,39 @@ function Level() {
                 <button className="button" onClick={toggleIsOptionModal}>Options</button>
             </div>
 
-            <Modal
-                isOpen={isOptionOpen}
-                onRequestClose={toggleIsOptionModal}
-                className="Modal bubble-finder-modal"
-                overlayClassName="ModalOverlay bubble-finder-modal-overlay"
-                contentLabel="Dialog Option">
-                <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
-            </Modal>
+            <ThemeContext.Consumer>
+                {theme => (
+                    <>
+                        <Modal
+                            isOpen={isOptionOpen}
+                            onRequestClose={toggleIsOptionModal}
+                            className={`Modal ${theme}-modal`}
+                            overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
+                            contentLabel="Dialog Option">
+                            <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
+                        </Modal>
 
-            <Modal
-                isOpen={isWinOpen}
-                onRequestClose={toggleIsWinModal}
-                contentLabel="My dialog"
-                className="Modal bubble-finder-modal"
-                overlayClassName="ModalOverlay bubble-finder-modal-overlay"
-            >
-                <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
-            </Modal>
+                        <Modal
+                            isOpen={isWinOpen}
+                            onRequestClose={toggleIsWinModal}
+                            className={`Modal ${theme}-modal`}
+                            overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
+                        >
+                            <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
+                        </Modal>
 
-            <Modal
-                isOpen={isFailedOpen}
-                onRequestClose={toggleIsFailedModal}
-                contentLabel="My dialog"
-                className="Modal bubble-finder-modal"
-                overlayClassName="ModalOverlay bubble-finder-modal-overlay"
-            >
-                <FailLevel restart={restartLevel} toggle_fail_modal={toggleIsFailedModal} />
-            </Modal>
+                        <Modal
+                            isOpen={isFailedOpen}
+                            onRequestClose={toggleIsFailedModal}
+                            className={`Modal ${theme}-modal`}
+                            overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
+                        >
+                            <FailLevel restart={restartLevel} toggle_fail_modal={toggleIsFailedModal} />
+                        </Modal>
+                    </>
+                )}
+
+            </ThemeContext.Consumer>
         </div>
     );
 }

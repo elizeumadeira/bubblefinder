@@ -142,13 +142,13 @@ const default_level = {
     },
 };
 
-const misc_config = {
+const default_misc_config = {
     theme: 'bubble-finder',
     levels: {}
 };
 
-function get_full_config_default() {
-    var ls = { ...misc_config };
+function full_default_config() {
+    var ls = { ...default_misc_config };
     ls.levels = { ...default_level };
     return ls;
 }
@@ -168,7 +168,7 @@ const levels = () => {
     // console.log(default_level);
     var ls = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (ls == 'null' || ls == null) {
-        ls = get_full_config_default();
+        ls = full_default_config();
     } else {
         ls = JSON.parse(ls);
     }
@@ -177,14 +177,19 @@ const levels = () => {
 };
 
 function setLocalStorage(storage) {
-    var config_default = get_full_config_default();;
-
+    var config_default = full_default_config();
     const new_config = _merge(config_default, storage);
+    console.log(new_config);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(new_config));
 }
 
 function eraseLocalStorage() {
     localStorage.removeItem(LOCAL_STORAGE_KEY);
+}
+
+function storedConfigs(){
+    let configs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    return configs ? configs : full_default_config();
 }
 
 const colors = [
@@ -193,4 +198,4 @@ const colors = [
     "#8B0707", "#329262", "#5574A6", "#3B3EAC"
 ];
 
-export { levels, colors, setLocalStorage, eraseLocalStorage, misc_config };
+export { levels, colors, setLocalStorage, eraseLocalStorage, storedConfigs };

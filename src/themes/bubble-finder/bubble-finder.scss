@@ -1,14 +1,14 @@
 $background-color-button: #495161;
 
-@mixin bf-fundo-principal {
+@mixin bf-fundo-principal-bf {
     background: cornflowerblue;
 }
-@mixin bf-button-container {
+@mixin bf-button-container-bf {
     width: 90%;
     margin: 0 auto;
 }
 
-@mixin bf-button-basic {
+@mixin bf-button-basic-bf {
     display: block;
     height: 80px;
     border: none;
@@ -18,8 +18,8 @@ $background-color-button: #495161;
     background: $background-color-button;
 }
 
-@mixin bf-button-style {
-    @include bf-button-basic;
+@mixin bf-button-style-bf {
+    @include bf-button-basic-bf;
     margin-bottom: 20px;
     transition: box-shadow 0.3s ease-out, margin-top 0.3s ease-out, margin-left 0.3s ease-out;
     width: 100%;
@@ -40,19 +40,83 @@ $background-color-button: #495161;
     text-decoration: none;
 }
 
-.bubble-finder {
+@mixin logo-bf {
+    margin-bottom: 30px;
 
-    @include bf-fundo-principal;
+    .logo {
+        margin: 0 auto;
+        width: 150px;
+
+        background-image: url("bubble-finder-logo.png");
+        background-repeat: no-repeat;
+        background-size: 150px 150px;
+        height: 150px;
+    }
+
+    .name {
+        font-size: 1.3em;
+        text-align: center;
+        margin-top: 10px;
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 1.8em;
+            margin: 2px;
+        }
+
+        & > div:first-child > span:nth-child(1) {
+            background-color: #66aa00;
+        }
+        & > div:first-child > span:nth-child(2) {
+            background-color: #b82e2e;
+        }
+        & > div:first-child > span:nth-child(3) {
+            background-color: #316395;
+        }
+        & > div:first-child > span:nth-child(4) {
+            background-color: #994499;
+        }
+        & > div:first-child > span:nth-child(5) {
+            background-color: #22aa99;
+        }
+        & > div:first-child > span:nth-child(6) {
+            background-color: #aaaa11;
+        }
+        & > div:nth-child(2) > span:nth-child(1) {
+            background-color: #6633cc;
+        }
+        & > div:nth-child(2) > span:nth-child(2) {
+            background-color: #e67300;
+        }
+        & > div:nth-child(2) > span:nth-child(3) {
+            background-color: #3366cc;
+        }
+        & > div:nth-child(2) > span:nth-child(4) {
+            background-color: #dc3912;
+        }
+        & > div:nth-child(2) > span:nth-child(5) {
+            background-color: #ff9900;
+        }
+        & > div:nth-child(2) > span:nth-child(6) {
+            background-color: #109618;
+        }
+    }
+}
+
+.bubble-finder {
+    @include bf-fundo-principal-bf;
 
     a {
         @include a;
     }
 
     .button-container {
-        @include bf-button-container;
+        @include bf-button-container-bf;
         a,
         button {
-            @include bf-button-style;
+            @include bf-button-style-bf;
         }
     }
 
@@ -71,30 +135,32 @@ $background-color-button: #495161;
                 font-weight: bold;
             }
             button {
-                @include bf-button-basic;
+                @include bf-button-basic-bf;
             }
             select {
                 appearance: none;
-                @include bf-button-basic;
+                @include bf-button-basic-bf;
             }
         }
     }
 
     // SCREEN MAIN MENU
     .container-main-menu {
-        .bubble-finder-header-logo{
+        .bubble-finder-header-logo {
             place-self: center;
+
+            @include logo-bf;
         }
 
         ul {
             li {
-                @include bf-button-style;
+                @include bf-button-style-bf;
             }
         }
     }
 
     // SCREEN LEVEL
-    .container-level{
+    .container-level {
         .sub-header-level {
             color: #fff;
             font-size: 20px;
@@ -110,7 +176,7 @@ $background-color-button: #495161;
                 justify-content: center;
                 text-decoration: none;
                 color: blue;
-    
+
                 &.cell_disabled {
                     background-color: gray;
                     color: lightgray;
@@ -124,9 +190,9 @@ $background-color-button: #495161;
     background-color: rgba(198, 198, 198, 0.7);
 
     .bubble-finder-modal.Modal {
-        @include bf-fundo-principal;
+        @include bf-fundo-principal-bf;
 
-        .bubble-finder-header-logo{
+        .bubble-finder-header-logo {
             margin: 0;
             align-self: center;
         }
@@ -135,9 +201,9 @@ $background-color-button: #495161;
             width: 100%;
             align-self: center;
 
-            @include bf-button-container;
+            @include bf-button-container-bf;
             li {
-                @include bf-button-style;
+                @include bf-button-style-bf;
 
                 a {
                     @include a;
