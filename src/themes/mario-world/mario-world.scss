@@ -225,10 +225,72 @@ $verde-mw: #42b132;
             font-size: 20px;
         }
 
-        .cell{
+        .cell {
             background: $azul-mw;
 
+            .bubble {
+                border-radius: 0;
+                background-size: 100% 100%;
+                background-position: center;
 
+                &.cell-number-0 {
+                    background-image: url("./icons/red-turtle-shell.png"); //
+                }
+                &.cell-number-1 {
+                    background-image: url("./icons/yoshi.png"); //
+                }
+                &.cell-number-2 {
+                    background-image: url("./icons/coin.png"); //
+                }
+                &.cell-number-3 {
+                    background-image: url("./icons/question-block.png"); //
+                }
+                &.cell-number-4 {
+                    background-image: url("./icons/pow-button.png"); //
+                }
+                &.cell-number-5 {
+                    background-image: url("./icons/red-mushroom.png"); //
+                }
+                &.cell-number-6 {
+                    background-image: url("./icons/green-mushroom.png"); //
+                }
+                &.cell-number-7 {
+                    background-image: url("./icons/flower.png"); //
+                }
+                &.cell-number-8 {
+                    background-image: url("./icons/feather.png"); //
+                }
+                &.cell-number-9 {
+                    background-image: url("./icons/bullet.png"); //
+                }
+                &.cell-number-10 {
+                    background-image: url("./icons/red-turtle.png"); //
+                }
+                &.cell-number-11 {
+                    background-image: url("./icons/plant.png"); //
+                }
+                &.cell-number-12 {
+                    background-image: url("./icons/yoshi-coin.png"); //
+                }
+                &.cell-number-13 {
+                    background-image: url("./icons/mario.png"); //
+                }
+                &.cell-number-14 {
+                    background-image: url("./icons/football-player.png"); //
+                }
+                &.cell-number-15 {
+                    background-image: url("./icons/p-ballon.png"); //
+                }
+                &.cell-number-16 {
+                    background-image: url("./icons/info-block.png"); //
+                }
+                &.cell-number-17 {
+                    background-image: url("./icons/phantom.png"); //
+                }
+                &.cell-number-18 {
+                    background-image: url("./icons/yoshi-egg.png"); //
+                }
+            }
         }
     }
 
@@ -305,7 +367,6 @@ $verde-mw: #42b132;
                 @include main-shadow-mw;
                 @include bf-button-style-mw;
                 font-family: "Mario Main Font";
-                
             }
         }
     }

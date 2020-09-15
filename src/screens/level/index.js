@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { levels as level_config_default, colors, setLocalStorage } from '../../configs'
+import { levels as level_config_default, setLocalStorage } from '../../configs'
 import Board from '../../component/board';
 import OptionLevel from './options-level';
 import WinLevel from './win-level';
@@ -76,7 +76,7 @@ function Level() {
                     allow_entry={level_config.unlock}
                     board_config={level_config.board}
                     color_number={level_config.color_number}
-                    color_list={colors.slice(0, level_config.color_number / 2)}
+                    // color_list={colors.slice(0, level_config.color_number / 2)}
                     score={score}
                     set_score={setScore}
                     tries={tries}

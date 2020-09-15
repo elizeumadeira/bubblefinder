@@ -3,7 +3,7 @@ import './index.scss';
 import Cell from '../cell';
 import { useHistory } from 'react-router-dom'
 
-function Board({ allow_entry, board_config, score, set_score, color_list, color_number, tries, set_tries, set_next_level, set_fail }) {
+function Board({ allow_entry, board_config, score, set_score, color_number, tries, set_tries, set_next_level, set_fail }) {
     let history = useHistory()
     if (!allow_entry) {
         history.push('/level-selection');
@@ -18,19 +18,19 @@ function Board({ allow_entry, board_config, score, set_score, color_list, color_
     const [cell_number, setCellNumber] = useState(color_number);
     const [clickable, setClickable] = useState(true);
 
-    function get_random_colors(colors) {
-        var color_number = colors.length;
+    function get_random_colors(color_number) {
         var result = [];
+        var color_list = Array.from(Array(color_number / 2).keys());
+        color_list = color_list.concat(color_list);
 
-        for (let cont = color_number - 1; cont >= 0; cont--) {
-            let color = colors.splice(Math.floor(Math.random() * cont), 1);
+        for (let cont = color_list.length; cont >= 0; cont--) {
+            let color = color_list.splice(Math.floor(Math.random() * cont), 1);
             result = result.concat(color);
         }
-
         return result;
     }
 
-    let random_colors = get_random_colors(color_list.concat(color_list))
+    let random_colors = get_random_colors(color_number);
 
     var stylecontainer = {
         transform: `rotate(${rotate}deg)`
@@ -41,6 +41,7 @@ function Board({ allow_entry, board_config, score, set_score, color_list, color_
             line_key++;
             column_key = 0;
             return linhas.map((celula) => {
+                let cell_code = random_colors.splice(0, celula)[0];
                 column_key++;
                 let key = `${line_key}_${column_key}`;
                 var b = {};
@@ -48,7 +49,7 @@ function Board({ allow_entry, board_config, score, set_score, color_list, color_
                 b[key] = {
                     disabled: celula == 0,
                     key: key,
-                    color: celula == 0 ? null : random_colors.splice(0, celula)[0],
+                    cell_code: `cell-number-${cell_code}`,
                     clicked: false
                 };
 
@@ -146,8 +147,8 @@ function Board({ allow_entry, board_config, score, set_score, color_list, color_
                     <Cell
                         disabled={object.disabled}
                         key={key}
-                        color={object.color}
                         clicked={object.clicked}
+                        cell_code={object.cell_code} 
                         onClick={() => actionClick(key)}
                     />
                 )

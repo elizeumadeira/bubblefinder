@@ -166,8 +166,72 @@ $background-color-button: #495161;
             font-size: 20px;
         }
 
-        .cell{
+        .cell {
             background: gray;
+
+            .bubble {
+                &.cell-number-0 {
+                    background-color: #66aa00;
+                }
+                &.cell-number-1 {
+                    background-color: #B82E2E;
+                }
+                &.cell-number-2 {
+                    background-color: #316395;
+                }
+                &.cell-number-3 {
+                    background-color: #994499;
+                }
+                &.cell-number-4 {
+                    background-color: #22AA99;
+                }
+                &.cell-number-5 {
+                    background-color: #AAAA11;
+                }
+                &.cell-number-6 {
+                    background-color: #6633CC;
+                }
+                &.cell-number-7 {
+                    background-color: #3366CC;
+                }
+                &.cell-number-8 {
+                    background-color: #DC3912;
+                }
+                &.cell-number-9 {
+                    background-color: #FF9900;
+                }
+                &.cell-number-10 {
+                    background-color: #109618;
+                }
+                &.cell-number-11 {
+                    background-color: #990099;
+                }
+                &.cell-number-12 {
+                    background-color: #3B3EAC;
+                }
+                &.cell-number-13 {
+                    background-color: #0099C6;
+                }
+                &.cell-number-14 {
+                    background-color: #DD4477;
+                }
+                &.cell-number-15 {
+                    background-color: #8B0707;
+                }
+                &.cell-number-16 {
+                    background-color: #329262;
+                }
+                &.cell-number-17 {
+                    background-color: #5574A6;
+                }
+                &.cell-number-18 {
+                    background-color: #3B3EAC;
+                }
+                &.cell-number-19 {
+                    background-color: #E67300;
+                }
+                
+            }
         }
     }
 
