@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { levels as level_config_default, colors, setLocalStorage } from '../../configs'
 import Board from '../../component/board';
@@ -20,6 +20,7 @@ function Level() {
     const [isOptionOpen, setIsOptionOpen] = useState(false);
     const [isFailedOpen, setIsFailedOpen] = useState(false);
     const [isWinOpen, setIsWinOpen] = useState(false);
+    const { theme, setTheme } = useContext(ThemeContext);
 
     function toggleIsOptionModal() {
         setIsOptionOpen(!isOptionOpen);
@@ -90,39 +91,32 @@ function Level() {
                 <button className="button" onClick={toggleIsOptionModal}>Options</button>
             </div>
 
-            <ThemeContext.Consumer>
-                {theme => (
-                    <>
-                        <Modal
-                            isOpen={isOptionOpen}
-                            onRequestClose={toggleIsOptionModal}
-                            className={`Modal ${theme}-modal`}
-                            overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
-                            contentLabel="Dialog Option">
-                            <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
-                        </Modal>
+            <Modal
+                isOpen={isOptionOpen}
+                onRequestClose={toggleIsOptionModal}
+                className={`Modal ${theme}-modal`}
+                overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
+                contentLabel="Dialog Option">
+                <OptionLevel restart={restartLevel} toggle_option_modal={toggleIsOptionModal} />
+            </Modal>
 
-                        <Modal
-                            isOpen={isWinOpen}
-                            onRequestClose={toggleIsWinModal}
-                            className={`Modal ${theme}-modal`}
-                            overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
-                        >
-                            <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
-                        </Modal>
+            <Modal
+                isOpen={isWinOpen}
+                onRequestClose={toggleIsWinModal}
+                className={`Modal ${theme}-modal`}
+                overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
+            >
+                <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
+            </Modal>
 
-                        <Modal
-                            isOpen={isFailedOpen}
-                            onRequestClose={toggleIsFailedModal}
-                            className={`Modal ${theme}-modal`}
-                            overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
-                        >
-                            <FailLevel restart={restartLevel} toggle_fail_modal={toggleIsFailedModal} />
-                        </Modal>
-                    </>
-                )}
-
-            </ThemeContext.Consumer>
+            <Modal
+                isOpen={isFailedOpen}
+                onRequestClose={toggleIsFailedModal}
+                className={`Modal ${theme}-modal`}
+                overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
+            >
+                <FailLevel restart={restartLevel} toggle_fail_modal={toggleIsFailedModal} />
+            </Modal>
         </div>
     );
 }

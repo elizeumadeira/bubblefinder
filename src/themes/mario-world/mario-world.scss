@@ -10,11 +10,12 @@
 
 $background-color-button: red;
 $bg-width: 5190px;
+$amarelo-mw: #fcd000;
+$vermelho-mw: #e71e07;
+$azul-mw: #009ddb;
+$verde-mw: #42b132;
 
 @mixin bf-fundo-principal-mw {
-    // background-image: url() ;
-    // background-repeat: no-repeat;
-
     background: url("yoshis-island-2.jpg") repeat;
     background-size: cover;
 
@@ -27,6 +28,13 @@ $bg-width: 5190px;
         }
     }
 }
+
+@mixin bf-fundo-modal-mw {
+    background: url("world-map-9.jpg") repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 @mixin bf-button-container-mw {
     width: 90%;
     margin: 0 auto;
@@ -39,24 +47,26 @@ $bg-width: 5190px;
     font-size: 2em;
     text-align: left;
     padding-left: 50px;
-
+    font-family: "Mario Main Font";
+    @include main-shadow-mw;
     // background: $background-color-button;
 }
 
 @mixin bf-button-style-mw {
     @include bf-button-basic-mw;
+
     margin-bottom: 20px;
     transition: box-shadow 0.3s ease-out, margin-top 0.3s ease-out, margin-left 0.3s ease-out;
     width: 100%;
     color: #fff;
+    background: none;
+    line-height: 3em;
 
     &:hover {
-        // box-shadow: 10px 10px 5px 0px rgba(40, 44, 52, 1);
-        // margin-left: -10px;
         background-image: url("./setinha.png");
         background-repeat: no-repeat;
         background-size: 30px 20px;
-        background-position: 10px 7px;
+        background-position: 10px 50%;
     }
 
     a {
@@ -112,40 +122,40 @@ $bg-width: 5190px;
         }
 
         & > div:first-child > span:nth-child(1) {
-            color: #009ddb;
+            color: $azul-mw;
         }
         & > div:first-child > span:nth-child(2) {
-            color: #fcd000;
+            color: $verde-mw;
         }
         & > div:first-child > span:nth-child(3) {
-            color: #e71e07;
+            color: $vermelho-mw;
         }
         & > div:first-child > span:nth-child(4) {
-            color: #42b132;
+            color: $amarelo-mw;
         }
         & > div:first-child > span:nth-child(5) {
-            color: #fcd000;
+            color: $verde-mw;
         }
         & > div:first-child > span:nth-child(6) {
-            color: #e71e07;
+            color: $vermelho-mw;
         }
         & > div:nth-child(2) > span:nth-child(1) {
-            color: #42b132;
+            color: $vermelho-mw;
         }
         & > div:nth-child(2) > span:nth-child(2) {
-            color: #fcd000;
+            color: $amarelo-mw;
         }
         & > div:nth-child(2) > span:nth-child(3) {
-            color: #009ddb;
+            color: $azul-mw;
         }
         & > div:nth-child(2) > span:nth-child(4) {
-            color: #e71e07;
+            color: $vermelho-mw;
         }
         & > div:nth-child(2) > span:nth-child(5) {
-            color: #009ddb;
+            color: $amarelo-mw;
         }
         & > div:nth-child(2) > span:nth-child(6) {
-            color: #fcd000;
+            color: $azul-mw;
         }
     }
 }
@@ -195,7 +205,7 @@ $bg-width: 5190px;
 
     // SCREEN MAIN MENU
     .container-main-menu {
-        .bubble-finder-header-logo {
+        .mario-world-header-logo {
             place-self: center;
 
             @include logo-mw;
@@ -214,6 +224,12 @@ $bg-width: 5190px;
             color: #fff;
             font-size: 20px;
         }
+
+        .cell{
+            background: $azul-mw;
+
+
+        }
     }
 
     // SCREEN LEVEL SELECTION
@@ -224,10 +240,10 @@ $bg-width: 5190px;
                 font-size: 32px;
                 justify-content: center;
                 text-decoration: none;
-                color: blue;
+                color: $azul-mw;
 
                 &.cell_disabled {
-                    background-color: gray;
+                    background-color: $verde-mw;
                     color: lightgray;
                 }
             }
@@ -243,11 +259,21 @@ $bg-width: 5190px;
     }
 }
 
-.bubble-finder-modal-overlay {
+.mario-world-modal-overlay {
     background-color: rgba(198, 198, 198, 0.7);
 
-    .bubble-finder-modal.Modal {
-        @include bf-fundo-principal-mw;
+    .mario-world-modal.Modal {
+        @include bf-fundo-modal-mw;
+        @include main-shadow-mw;
+        font-family: "Mario Main Font";
+        font-size: 1em;
+        color: #fff;
+
+        .mario-world-header-logo {
+            place-self: center;
+
+            @include logo-mw;
+        }
 
         .bubble-finder-header-logo {
             margin: 0;
@@ -265,6 +291,21 @@ $bg-width: 5190px;
                 a {
                     @include a;
                 }
+            }
+        }
+
+        a {
+            @include a;
+        }
+
+        .button-container {
+            @include bf-button-container-mw;
+            a,
+            button {
+                @include main-shadow-mw;
+                @include bf-button-style-mw;
+                font-family: "Mario Main Font";
+                
             }
         }
     }

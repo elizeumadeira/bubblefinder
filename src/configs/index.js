@@ -177,7 +177,7 @@ const levels = () => {
 };
 
 function setLocalStorage(storage) {
-    var config_default = full_default_config();
+    var config_default = storedConfigs();
     const new_config = _merge(config_default, storage);
     console.log(new_config);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(new_config));
