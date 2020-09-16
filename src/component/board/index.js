@@ -90,7 +90,7 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
         const board = { ...board_matrix };
         let rotate_board = false;
 
-        if (board[markey_cell1].color == board[markey_cell2].color) {
+        if (board[markey_cell1].cell_code == board[markey_cell2].cell_code) {
             board[markey_cell1].disabled = true;
             board[markey_cell2].disabled = true;
             set_score(score + 100);
@@ -140,6 +140,7 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
 
         setBoardMatrix(board_matrix);
     }
+
     return (
         <div className={`container ${!clickable ? 'game_over' : ''}`} style={stylecontainer}>
             {
@@ -148,7 +149,8 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
                         disabled={object.disabled}
                         key={key}
                         clicked={object.clicked}
-                        cell_code={object.cell_code} 
+                        cell_code={object.cell_code}
+                        contra_rotate={rotate}
                         onClick={() => actionClick(key)}
                     />
                 )
