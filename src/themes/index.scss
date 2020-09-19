@@ -1,12 +1,23 @@
 @import "./bubble-finder/bubble-finder.scss";
 @import "./mario-world/mario-world.scss";
 
-#root > div {
+body {
+    background-color: #009ddb;
+}
+#root {
+    height: 100%;
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+
+    & > div {
+        position: relative;
+        height: 100%;
+        max-width: 720px;
+        max-height: 930px;
+        margin: auto;
+    }
 }
 
 .ModalOverlay {
@@ -17,6 +28,10 @@
     bottom: 0;
 
     .Modal {
+        max-width: 680px;
+        max-height: 900px;
+        margin: 0 auto;
+
         &.ModalOptions {
             & > div:first-child {
                 display: grid;
@@ -31,15 +46,6 @@
             display: grid;
             grid-template-rows: 75% auto;
             grid-template-columns: 1fr;
-            // height: 100%;
-
-            // .button-container {
-            //     @include bf-button-container;
-
-            //     button {
-            //         @include bf-button-style;
-            //     }
-            // }
         }
         position: absolute;
         top: 40px;
@@ -50,9 +56,6 @@
         ul {
             padding: 0;
             list-style: none;
-
-            li {
-            }
         }
     }
 }

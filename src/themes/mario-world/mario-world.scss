@@ -30,7 +30,7 @@ $verde-mw: #42b132;
 }
 
 @mixin bf-fundo-modal-mw {
-    background: url("world-map-9.jpg") repeat;
+    background: url("modal-bc.png") repeat;
     background-size: cover;
     background-position: center;
 }
@@ -81,6 +81,7 @@ $verde-mw: #42b132;
 }
 
 @mixin main-shadow-mw {
+    color: #FFF;
     text-shadow: rgb(0, 0, 0) 5px 0px 0px, rgb(0, 0, 0) 4.90033px 0.993347px 0px, rgb(0, 0, 0) 4.60531px 1.94709px 0px,
         rgb(0, 0, 0) 4.12668px 2.82321px 0px, rgb(0, 0, 0) 3.48353px 3.58678px 0px, rgb(0, 0, 0) 2.70151px 4.20736px 0px,
         rgb(0, 0, 0) 1.81179px 4.6602px 0px, rgb(0, 0, 0) 0.849836px 4.92725px 0px,
@@ -314,7 +315,7 @@ $verde-mw: #42b132;
 
     //SCREEN OPTIONS
     .container-options {
-        padding-top: 30%;
+        padding-top: 20%;
         display: grid;
         grid-template-rows: 70% 100px;
         height: 100%;

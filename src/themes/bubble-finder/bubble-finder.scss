@@ -261,6 +261,10 @@ $background-color-button: #495161;
         @include bf-fundo-principal-bf;
 
         .bubble-finder-header-logo {
+            place-self: center;
+
+            @include logo-bf;
+
             margin: 0;
             align-self: center;
         }
@@ -276,6 +280,14 @@ $background-color-button: #495161;
                 a {
                     @include a;
                 }
+            }
+        }
+
+        .button-container {
+            @include bf-button-container-bf;
+            a,
+            button {
+                @include bf-button-style-bf;
             }
         }
     }
