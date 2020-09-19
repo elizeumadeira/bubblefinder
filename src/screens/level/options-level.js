@@ -8,7 +8,7 @@ export default (props) => {
             <MainLogo />
             <ul>
                 <li>
-                    <a href="#" onClick={props.toggle_option_modal}>Resume</a>
+                    <Link to="#" onClick={props.toggle_option_modal}>Resume</Link>
                 </li>
                 <li>
                     <Link to="#" onClick={() => { props.restart(); props.toggle_option_modal(); }}>Restart Level</Link>

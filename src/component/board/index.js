@@ -47,7 +47,7 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
                 var b = {};
                 b[key] = null;
                 b[key] = {
-                    disabled: celula == 0,
+                    disabled: celula === 0,
                     key: key,
                     cell_code: `cell-number-${cell_code}`,
                     clicked: false
@@ -60,10 +60,10 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
     ).flat().reduce((accumulator, currentValue) => Object.assign(accumulator, currentValue));
 
     useEffect(() => {
-        if (markey_cell1 == null || markey_cell2 == null)
+        if (markey_cell1 === null || markey_cell2 === null)
             return;
 
-        if (markey_cell1 == markey_cell2)
+        if (markey_cell1 === markey_cell2)
             return;
 
         setTimeout(compara, 500);
@@ -75,12 +75,12 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
     }, []);
 
     useEffect(() => {
-        if (cell_number == 0) {
+        if (cell_number === 0) {
             finaliza_win();
             return;
         }
 
-        if (tries == 0) {
+        if (tries === 0) {
             finaliza_fail();
             return;
         }
@@ -90,7 +90,7 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
         const board = { ...board_matrix };
         let rotate_board = false;
 
-        if (board[markey_cell1].cell_code == board[markey_cell2].cell_code) {
+        if (board[markey_cell1].cell_code === board[markey_cell2].cell_code) {
             board[markey_cell1].disabled = true;
             board[markey_cell2].disabled = true;
             set_score(score + 100);
@@ -127,10 +127,10 @@ function Board({ allow_entry, board_config, score, set_score, color_number, trie
         if (!clickable)
             return;
 
-        if (markey_cell1 == null) {
+        if (markey_cell1 === null) {
             setCell1(key);
         } else {
-            if (markey_cell1 != key) {
+            if (markey_cell1 !== key) {
                 setCell2(key);
             }
         }

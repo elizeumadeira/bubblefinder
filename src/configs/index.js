@@ -167,7 +167,7 @@ var _merge = function (target, source) {
 const levels = () => {
     // console.log(default_level);
     var ls = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (ls == 'null' || ls == null) {
+    if (ls === 'null' || ls === null) {
         ls = full_default_config();
     } else {
         ls = JSON.parse(ls);

@@ -38,6 +38,12 @@ $background-color-button: #495161;
 @mixin a {
     color: #fff;
     text-decoration: none;
+    background: none;
+    border: none;
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0;
 }
 
 @mixin logo-bf {
@@ -174,7 +180,7 @@ $background-color-button: #495161;
                     background-color: #66aa00;
                 }
                 &.cell-number-1 {
-                    background-color: #B82E2E;
+                    background-color: #b82e2e;
                 }
                 &.cell-number-2 {
                     background-color: #316395;
@@ -183,22 +189,22 @@ $background-color-button: #495161;
                     background-color: #994499;
                 }
                 &.cell-number-4 {
-                    background-color: #22AA99;
+                    background-color: #22aa99;
                 }
                 &.cell-number-5 {
-                    background-color: #AAAA11;
+                    background-color: #aaaa11;
                 }
                 &.cell-number-6 {
-                    background-color: #6633CC;
+                    background-color: #6633cc;
                 }
                 &.cell-number-7 {
-                    background-color: #3366CC;
+                    background-color: #3366cc;
                 }
                 &.cell-number-8 {
-                    background-color: #DC3912;
+                    background-color: #dc3912;
                 }
                 &.cell-number-9 {
-                    background-color: #FF9900;
+                    background-color: #ff9900;
                 }
                 &.cell-number-10 {
                     background-color: #109618;
@@ -207,30 +213,29 @@ $background-color-button: #495161;
                     background-color: #990099;
                 }
                 &.cell-number-12 {
-                    background-color: #3B3EAC;
+                    background-color: #3b3eac;
                 }
                 &.cell-number-13 {
-                    background-color: #0099C6;
+                    background-color: #0099c6;
                 }
                 &.cell-number-14 {
-                    background-color: #DD4477;
+                    background-color: #dd4477;
                 }
                 &.cell-number-15 {
-                    background-color: #8B0707;
+                    background-color: #8b0707;
                 }
                 &.cell-number-16 {
                     background-color: #329262;
                 }
                 &.cell-number-17 {
-                    background-color: #5574A6;
+                    background-color: #5574a6;
                 }
                 &.cell-number-18 {
-                    background-color: #3B3EAC;
+                    background-color: #3b3eac;
                 }
                 &.cell-number-19 {
-                    background-color: #E67300;
+                    background-color: #e67300;
                 }
-                
             }
         }
     }
@@ -277,7 +282,8 @@ $background-color-button: #495161;
             li {
                 @include bf-button-style-bf;
 
-                a {
+                a,
+                button {
                     @include a;
                 }
             }

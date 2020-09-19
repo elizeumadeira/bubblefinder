@@ -20,7 +20,7 @@ function Level() {
     const [isOptionOpen, setIsOptionOpen] = useState(false);
     const [isFailedOpen, setIsFailedOpen] = useState(false);
     const [isWinOpen, setIsWinOpen] = useState(false);
-    const { theme, setTheme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     function toggleIsOptionModal() {
         setIsOptionOpen(!isOptionOpen);
@@ -106,7 +106,7 @@ function Level() {
                 className={`Modal ${theme}-modal`}
                 overlayClassName={`ModalOverlay ${theme}-modal-overlay`}
             >
-                <WinLevel restart={restartLevel} is_last_level={level == 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
+                <WinLevel restart={restartLevel} is_last_level={level === 10} level_number={level} toggle_win_modal={toggleIsWinModal} />
             </Modal>
 
             <Modal
