@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ThemeContext from '../../configs/theme-context.js';
 
 export default () => {
-    const { theme, setTheme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <div className={`${theme}-header-logo`}>
